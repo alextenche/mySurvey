@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Roux Academy: Survey</title>
+<title>My: Survey</title>
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -20,7 +20,37 @@
 <script>
  $(document).ready(function() {
    $('.column').columnize({ columns: 2 });
+   
+   $('#review').click(function(){
+		interestsChecked = $('.interests:checked').map(function(){
+			return $(this).val();
+		}).get();
+		$('#interestsResult').html('<strong>Interests: </strong>');
+		$('#interestsResult').append(interestsChecked.join(', '));
+		
+		sharedChecked = $('.shared:checked').map(function(){
+			return $(this).val();
+		}).get();
+		$('#sharedResult').html('<strong>Shared: </strong>');
+		$('#sharedResult').append(sharedChecked.join(', '));
+		
+		var theDesiredCourse = localStorage.getItem('desiredCourse');
+		theDesiredCourse = '<strong>Desired: </strong>' + theDesiredCourse;
+		$('#desiredCourseResult').html(theDesiredCourse);
+		
+		// for Q3
+		var theArtistLength = localStorage.getItem('artistLength');
+		theArtistLength = '<strong>Artist: </strong>' + theArtistLength;
+		$('#artistLengthResult').html(theArtistLength);
+		
+		// for Q4
+		var theHoursPractice = localStorage.getItem('hoursPractice');
+		theHoursPractice = '<strong>Hours: </strong>' + theHoursPractice;
+		$('#hoursPracticeResult').html(theHoursPractice);
+   });
  });
+ 
+ 
    	// Update text field for slider
 	function printValue(sliderID, textbox) {
 		var x = document.getElementById(textbox);
