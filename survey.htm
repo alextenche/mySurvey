@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My: Survey</title>
+<title>Roux Academy: Survey</title>
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -10,22 +10,24 @@
 <script src="../_scripts/respond.min.js"></script>
 <![endif]-->
 <link href="styles/main.css" rel="stylesheet" media="screen, projection">
+<link href="styles/transitions.css" rel="stylesheet" media="screen, projection">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="scripts/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="scripts/utils.js"></script>
+<script type="text/javascript" src="scripts/custom_survey.js"></script>
 <script type="text/javascript" src="scripts/jquery.columnizer.min.js"></script>
 <script type="text/javascript" src="scripts/html5slider.js"></script>
 <script>
-	$(document).ready(function(){
-		$('.column').columnize({ columns: 2});
-	});
-	
-	// update text field for slider
-	function printValue(sliderId, textbox){
+ $(document).ready(function() {
+   $('.column').columnize({ columns: 2 });
+ });
+   	// Update text field for slider
+	function printValue(sliderID, textbox) {
 		var x = document.getElementById(textbox);
-		var y = document.getElementById(sliderId);
+		var y = document.getElementById(sliderID);
 		x.value = y.value;
 	}
-	window.onload = function(){
+	window.onload = function() { 
 		printValue('hoursPractice', 'hoursPracticeValue');
 	}
 </script>
@@ -49,7 +51,7 @@
   <p>We&rsquo;ve been providing fine art and design education for over 150 years, but we're very much focused on the present and future. Please take the short survey below to help us better understand&#8212;and fulfill&#8212;your desires and needs. </p>
   <div id="theArt">
     <div id="cube" class="show-front">
-      <form id="theForm" method="post" action="tanks.htm">
+      <form  id="theForm" method="post" action="thanks.htm">
         <div class="front panel">
           <div class="innerContainer">
             <h2>Q 1/5</h2>
@@ -116,23 +118,29 @@
                   <input name="interests_" type="checkbox" class="interests" id="interests_11" value="Textiles" />
                   Textiles</label>
               </p>
-            </div>	  
+            </div>
+            <p class="show-buttons">
+              <input type="button" class="show-back alignRight" value="Next" />
+            </p>
           </div>
         </div>
-		
         <div class="back cf panel">
           <div class="innerContainer">
             <h2>Q 2/5</h2>
             <p>What area of study didn’t you see that you wish you did?</p>
-			<p><input id="desiredCourse" type="text" placeholder="Desired course" /></p>
+            <p>
+              <input id="desiredCourse" type="text" placeholder="Desired course" /></p>
+            <p class="show-buttons">
+              <input type="button" class="show-front alignLeft" value="Previous" />
+              <input type="button" class="show-right alignRight" value="Next" />
+            </p>
           </div>
         </div>
-		
         <div class="right cf panel">
           <div class="innerContainer">
             <h2>Q 3/5</h2>
             <p>How long have you thought of yourself as an artist?</p>
-			<p>
+           <p>
               <input type="radio" id="artistLength1" name="artistLength" value="Since I was a kid" />
               <label>Since I was a kid.</label>
             </p>
@@ -152,29 +160,33 @@
               <input type="radio" id="artistLength5" name="artistLength" value="I don't" />
               <label>I don't.</label>
             </p>
+            <p class="show-buttons">
+              <input type="button" class="show-back alignLeft" value="Previous" />
+              <input type="button" class="show-left alignRight" value="Next" />
+            </p>
           </div>
         </div>
-		
         <div class="left cf panel">
           <div class="innerContainer">
             <h2>Q 4/5</h2>
             <p>How many hours a day do you practice your art?</p>
-			<p>
-				<input type="range" id="hoursPractice" min="0" max="24" value="0" onchange="printValue('hoursPractice', 'hoursPracticeValue')"/>
-			</p>
-			<p>
-				<input type="text" id="hoursPracticeValue" placeholder="Move slider from 0 to 24 hours" />
-			</p>
+            <p>
+              <input type="range" min="0" max="24" value="0" id="hoursPractice" onchange="printValue('hoursPractice','hoursPracticeValue')" />
+            </p>
+            <p>
+              <input type="text" id="hoursPracticeValue" placeholder="Move slider from 0 to 24 hours" />
+            </p>
+            <p class="show-buttons">
+              <input type="button" class="show-right alignLeft" value="Previous" />
+              <input type="button" class="show-top alignRight" value="Next" />
+            </p>
           </div>
         </div>
-		
         <div class="top cf panel">
           <div class="innerContainer">
             <h2>Q 5/5</h2>
             <p>Who have you shared your work with?<br>
               (Check all that apply.)</p>
-				<!-- Fifth question -->
-            <p>
               <label>
                 <input class="shared" type="checkbox" name="viewers_" value="Family" id="viewers_0" />
                 Family</label>
@@ -199,9 +211,12 @@
                 <input class="shared" type="checkbox" name="viewers_" value="No one" id="viewers_0" />
                 No one</label>
             </p>
+            <p class="show-buttons">
+              <input type="button" class="show-left alignLeft" value="Previous" />
+              <input id="review" type="button" class="show-bottom alignRight" value="Next" />
+            </p>
           </div>
         </div>
-		
         <div class="bottom cf panel">
           <div class="innerContainer">
             <h2>Review / Submit</h2>
@@ -210,30 +225,34 @@
               <tr>
                 <td width="15%">Q1:</td>
                 <td id="interestsResult" width="60%"><strong>Interests: </strong></td>
-                <td width="25%" class="show-buttons"></td>
+                <td width="25%" class="show-buttons"><input type="button" class="show-front" value="Modify" /></td>
               </tr>
               <tr>
                 <td>Q2:</td>
                 <td id="desiredCourseResult"><strong>Desired: </strong></td>
-                <td class="show-buttons"></td>
+                <td class="show-buttons"><input type="button" class="show-back" value="Modify" /></td>
               </tr>
               <tr>
                 <td>Q3</td>
                 <td id="artistLengthResult"><strong>Artist: </strong></td>
-                <td class="show-buttons"></td>
+                <td class="show-buttons"><input type="button" class="show-right" value="Modify" /></td>
               </tr>
               <tr>
                 <td>Q4</td>
                 <td id="hoursPracticeResult"><strong>Hours: </strong></td>
-                <td class="show-buttons"></td>
+                <td class="show-buttons"><input type="button" class="show-left" value="Modify" /></td>
               </tr>
               <tr>
                 <td>Q5</td>
                 <td id="sharedResult"><strong>Shared: </strong></td>
-                <td class="show-buttons"></td>
+                <td class="show-buttons"><input type="button" class="show-top" value="Modify" /></td>
               </tr>
             </table>
             <p>Thank you for taking our survey.</p>
+            <p class="show-buttons">
+              <input type="button" class="show-top alignLeft" value="Previous" />
+              <input type="submit" class="alignRight" value="Submit" />
+            </p>
           </div>
         </div>
       </form>
